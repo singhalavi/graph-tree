@@ -1,0 +1,17 @@
+<!-- Manifest required by Vaadin Directory -->
+<manifest>
+    <attribute name="Vaadin-Package-Version"
+               value="1" />
+    <attribute name="Vaadin-Widgetsets"
+               value="${widgetset}" />
+    <attribute name="Implementation-Title"
+               value="GraphTree for Vaadin" />
+    <attribute name="Implementation-Version"
+               value="1.0.2-RELEASE" />
+    <attribute name="Implementation-Vendor"
+               value="Me @Hs18" />
+    <attribute name="Vaadin-License-Title"
+               value="Apache2" />
+    <attribute name="Vaadin-License-File"
+        value="http://www.apache.org/licenses/LICENSE-2.0" />
+</manifest>
