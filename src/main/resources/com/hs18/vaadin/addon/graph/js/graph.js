@@ -41,7 +41,12 @@ function drawGraphNodes(data){
 }
 //Raphael util methods
 Raphael.el.red = function () {
-	this.attr({fill: "#f00"});
+	this.attr({fill: "red"});
+	this.attr({cursor: 'pointer'});
+	return this;
+};
+Raphael.el.yellow = function () {
+	this.attr({fill: "yellow"});
 	this.attr({cursor: 'pointer'});
 	return this;
 };
@@ -53,6 +58,19 @@ Raphael.el.green = function () {
 	this.attr({fill: "#0f0"});
 	this.attr({cursor: 'pointer'});
 };
+Raphael.el.purple = function () {
+	this.attr({fill: "#9E7BFF"});
+	this.attr({cursor: 'pointer'});
+};
+Raphael.el.orange = function () {
+	this.attr({fill: "orange"});
+	this.attr({cursor: 'pointer'});
+};
+Raphael.el.brawn = function () {
+	this.attr({fill: "#B4A28F"});
+	this.attr({cursor: 'pointer'});
+};
+
 Raphael.el.grey = function () {
 	this.attr({fill: "90-#f3f3f3-#fff"});
 	this.attr({stroke: "#666"});
@@ -158,13 +176,7 @@ function drawNode(paper, node, startPosX, startPosY, availableWidth, arrowPathHe
 	
 	if(node.className)
 	{
-		if(node.className == 'RED'){
-			rect.red();
-		}else if(node.className == 'GREEN'){
-			rect.green();
-		}else if(node.className =='GREY'){
-			rect.grey();
-		}
+		eval("rect."+node.className.toLowerCase()+"()");
 	}else{
 		rect.grey();
 	}

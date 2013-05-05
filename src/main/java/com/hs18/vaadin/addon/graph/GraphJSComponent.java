@@ -28,7 +28,12 @@ public class GraphJSComponent extends AbstractJavaScriptComponent {
 	public enum RECT_STYLE{
 		RED,
 		GREY,
-		GREEN
+		GREEN,
+		BLUE,
+		YELLOW,
+		PURPLE,
+		ORANGE,
+		BRAWN
 	}
 	Map<String, GraphJsNode> nodeMap = new HashMap<String, GraphJsNode>();
 	
