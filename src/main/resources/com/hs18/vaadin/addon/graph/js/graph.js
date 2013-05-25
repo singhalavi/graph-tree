@@ -39,45 +39,7 @@ function drawGraphNodes(data){
 		}
 	}	
 }
-//Raphael util methods
-Raphael.el.red = function () {
-	this.attr({fill: "red"});
-	this.attr({cursor: 'pointer'});
-	return this;
-};
-Raphael.el.yellow = function () {
-	this.attr({fill: "yellow"});
-	this.attr({cursor: 'pointer'});
-	return this;
-};
-Raphael.el.blue = function () {
-	this.attr({fill: "#00f"});
-	this.attr({cursor: 'pointer'});
-};
-Raphael.el.green = function () {
-	this.attr({fill: "#0f0"});
-	this.attr({cursor: 'pointer'});
-};
-Raphael.el.purple = function () {
-	this.attr({fill: "#9E7BFF"});
-	this.attr({cursor: 'pointer'});
-};
-Raphael.el.orange = function () {
-	this.attr({fill: "orange"});
-	this.attr({cursor: 'pointer'});
-};
-Raphael.el.brawn = function () {
-	this.attr({fill: "#B4A28F"});
-	this.attr({cursor: 'pointer'});
-};
 
-Raphael.el.grey = function () {
-	this.attr({fill: "90-#f3f3f3-#fff"});
-	this.attr({stroke: "#666"});
-	this.attr({'stroke-width': 0.5});
-	this.attr({cursor: 'pointer'});
-	return this;
-};
 Raphael.el.textStyle = function () {
 	this.attr({'font-size': 11});
 	this.attr({cursor: 'pointer'});
@@ -158,10 +120,7 @@ function drawRaphaelDiagram(paperId, root) {
 function drawNode(paper, node, startPosX, startPosY, availableWidth, arrowPathHeight, nodeElWidth, nodeElHeight, nodeElWMargin, nodeElCornerRadius) {
 	var leftMargin = nodeElWMargin / 2;
 	var rect = paper.rect(startPosX - nodeElWidth/2, startPosY, nodeElWidth, nodeElHeight, nodeElCornerRadius);
-	if(node.title != null)
-	{
-		rect.attr({'title':node.title});
-	}
+	
 	node._x = startPosX;
 	node._y = startPosY;
 	xPos[node.id] =  startPosX;
@@ -169,17 +128,17 @@ function drawNode(paper, node, startPosX, startPosY, availableWidth, arrowPathHe
 	//console.log("ID " +node.id + " _x:" +node._x)
 
 	var t = paper.text(startPosX, startPosY + nodeElHeight/2, node.label).textStyle();
-	if(node.title != null)
-	{
-		t.attr({'title':node.title});
+	
+	if(node.properties != null){
+		rect.attr(node.properties);
+		if(node.properties['title']){
+			t.attr({'title':node.properties['title']});
+		}
+		if(node.properties['opacity'] != null){
+			t.attr({'opacity':node.properties['opacity']});
+		}
 	}
 	
-	if(node.className)
-	{
-		eval("rect."+node.className.toLowerCase()+"()");
-	}else{
-		rect.grey();
-	}
 /*	if (node.getIcon() != null || node.getIcon() !== undefined) {
 		var icon_img = paper.image(node.getIcon(), startPosX - nodeElWidth/2 + 10,  startPosY + 5, 16, 16)
 	}

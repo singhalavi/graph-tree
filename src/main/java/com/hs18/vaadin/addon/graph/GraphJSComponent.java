@@ -13,7 +13,6 @@ import org.json.JSONException;
 
 import com.hs18.vaadin.addon.graph.listener.GraphJsLeftClickListener;
 import com.vaadin.annotations.JavaScript;
-import com.vaadin.annotations.StyleSheet;
 import com.vaadin.shared.communication.ClientRpc;
 import com.vaadin.ui.AbstractJavaScriptComponent;
 import com.vaadin.ui.JavaScriptFunction;
@@ -24,17 +23,7 @@ public class GraphJSComponent extends AbstractJavaScriptComponent {
 
 	private static final long serialVersionUID = 1L;
 	private GraphJsLeftClickListener leftClickListener;
-	
-	public enum RECT_STYLE{
-		RED,
-		GREY,
-		GREEN,
-		BLUE,
-		YELLOW,
-		PURPLE,
-		ORANGE,
-		BRAWN
-	}
+
 	Map<String, GraphJsNode> nodeMap = new HashMap<String, GraphJsNode>();
 	
 	public GraphJSComponent() {
@@ -104,13 +93,13 @@ public class GraphJSComponent extends AbstractJavaScriptComponent {
 		return sb.toString();
 	}
 	
-	public void addNode(String id, String label, String type, String tooltip, String icon, String parentId) throws Exception {
+	public void addNode(String id, String label, String type, String icon, String parentId) throws Exception {
 		if(id.equals(parentId)){
 			throw new Exception("Parent ID can not be equal to child id");
 		}
 		GraphJsNode node = nodeMap.get(id);
 		if(node == null){
-			node = new GraphJsNode(id, getBreakedLabel(label), tooltip, icon, type, parentId, null);
+			node = new GraphJsNode(id, getBreakedLabel(label), icon, type, parentId);
 			nodeMap.put(id, node);
 		}else {
 			throw new Exception("node already exists with id = " +id);
@@ -134,32 +123,24 @@ public class GraphJSComponent extends AbstractJavaScriptComponent {
 		}
 	}
 	
-	public void setNodeStyle(String id, RECT_STYLE style) throws Exception{
-		GraphJsNode node = nodeMap.get(id);
-		if(node == null){
-			throw new Exception("Node not found with id = " + id);
-		}
-		node.setClassName(style.name());
-	}
-	
 	public void setLeftClickListener(GraphJsLeftClickListener leftClickListener){
 		this.leftClickListener = leftClickListener;
 	}
 	
-	public void setNodeToolTip(String id, String toolTip) throws Exception{
+	public void setNodeProperties(String id, Map<String, String> properties) throws Exception{
 		GraphJsNode node = nodeMap.get(id);
 		if(node == null){
 			throw new Exception("Node not found with id = " + id);
 		}
-		node.setTitle(toolTip);
+		node.setProperties(properties);
 	}
 	
-	public void setNodeLabel(String id, String label) throws Exception{
+	public Map<String, String> getNodeProperties(String id) throws Exception{
 		GraphJsNode node = nodeMap.get(id);
 		if(node == null){
 			throw new Exception("Node not found with id = " + id);
 		}
-		node.setLabel(getBreakedLabel(label));
+		return node.getProperties();
 	}
 	
 	public interface GraphJsRefreshRpc extends ClientRpc {

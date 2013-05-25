@@ -1,16 +1,19 @@
 package com.hs18.vaadin.addon.graph;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+
 
 public class GraphJsNode {
 
 	String id;
 	String label;
-	String title;
 	String icon;
 	String type;
-	String className;
+	Map<String, String> properties;
 	
 	int _x;
 	int _y;
@@ -32,14 +35,6 @@ public class GraphJsNode {
 
 	public void setId(String id) {
 		this.id = id;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
 	}
 
 	public String getIcon() {
@@ -91,14 +86,12 @@ public class GraphJsNode {
 		this.parentId = parentId;
 	}
 
-	public GraphJsNode(String id, String label, String title, String icon, String type, String parentId, String className) {
+	public GraphJsNode(String id, String label, String icon, String type, String parentId) {
 		this.id = id;
 		this.label = label;
-		this.title = title;
 		this.icon = icon;
 		this.type = type;
 		this.parentId = parentId;
-		this.className = className;
 	}
 	
 	public void addChild(GraphJsNode node){
@@ -108,11 +101,14 @@ public class GraphJsNode {
 		}
 	}
 
-	public String getClassName() {
-		return className;
+	public Map<String, String> getProperties() {
+		if(properties == null){
+			properties =  new HashMap<String, String>();
+		}
+		return properties;
 	}
 
-	public void setClassName(String className) {
-		this.className = className;
+	public void setProperties(Map<String, String> properties) {
+		this.properties = properties;
 	}
 }
