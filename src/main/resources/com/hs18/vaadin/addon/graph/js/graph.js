@@ -33,9 +33,17 @@ com_hs18_vaadin_addon_graph_GraphJSComponent = function() {
 
 function drawGraphNodes(data){
 	$('#graph').empty();
+	var nodeElHeight = 55;
+	var nodeElWidth = 120;
+	if(data.nodeWidth){
+		nodeElWidth = data.nodeWidth;
+	}
+	if(data.nodeHeight){
+		nodeElHeight = data.nodeHeight;
+	}
 	if(data && data.parentNodeList){
 		for(var i=0; i < data.parentNodeList.length; i++){
-			drawRaphaelDiagram('graph', data.parentNodeList[i]);
+			drawRaphaelDiagram('graph', data.parentNodeList[i], nodeElWidth, nodeElHeight);
 		}
 	}	
 }
@@ -60,12 +68,10 @@ Raphael.el.addArrow = function () {
 	return this;
 };
 
-function drawRaphaelDiagram(paperId, root) {
+function drawRaphaelDiagram(paperId, root, nodeElWidth, nodeElHeight) {
 	var paperWidth = 800;
 	var paperHeight = 500;
-	
-	var nodeElWidth = 120;
-	var nodeElHeight = 55;
+
 	var nodeElCornerRadius = 10;
 	var nodeElWMargin = 10;
 	var arrowPathHeight = 20;

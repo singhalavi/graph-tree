@@ -71,11 +71,12 @@ public class GraphJSComponent extends AbstractJavaScriptComponent {
 	
 	public String getBreakedLabel(String label){
 		StringBuffer sb = new StringBuffer(label);
-		int chunkLength = 20;
+		int numberOfLines = getState().getNodeHeight()/10;
+		int chunkLength = getState().getNodeWidth()/6;
 		int count =0;
 		for(int i =chunkLength; i < label.length(); i+=chunkLength){
 			count++;
-			if(count > 4){
+			if(count >= numberOfLines){
 				return sb.substring(0, i-chunkLength-3) + "...";
 			}
 			int index = sb.indexOf("\n", i-chunkLength);
@@ -141,6 +142,11 @@ public class GraphJSComponent extends AbstractJavaScriptComponent {
 			throw new Exception("Node not found with id = " + id);
 		}
 		return node.getProperties();
+	}
+	
+	public void setNodesSize(int width, int height) {
+		getState().setNodeWidth(width);
+		getState().setNodeHeight(height);
 	}
 	
 	public interface GraphJsRefreshRpc extends ClientRpc {
