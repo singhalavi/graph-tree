@@ -2,12 +2,12 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.hs18.vaadin.addon</groupId>
   <artifactId>graph</artifactId>
-  <version>0.0.5</version>
+  <version>0.0.6</version>
   <name>Graph</name>
   <description>Graph</description>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<vaadin.version>7.0.5</vaadin.version>
+		<vaadin.version>7.1.0</vaadin.version>
 		<vaadin.plugin.version>${vaadin.version}</vaadin.plugin.version>
 	</properties>
 	<repositories>
@@ -50,4 +50,22 @@
 			<version>${vaadin.version}</version>
 		</dependency>
 	</dependencies>
+		<build>
+    <plugins>
+      <plugin>
+      	<groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <configuration>
+          <archive>
+            <manifestEntries>
+              <Vaadin-Package-Version>1</Vaadin-Package-Version>
+              <Implementation-Title>GraphTree for Vaadin</Implementation-Title>
+              <Implementation-Version>${project.version}</Implementation-Version>
+              <Implementation-Vendor>Avinash @Homeshop18</Implementation-Vendor>
+            </manifestEntries>
+          </archive>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 </project>

@@ -144,6 +144,14 @@ public class GraphJSComponent extends AbstractJavaScriptComponent {
 		return node.getProperties();
 	}
 	
+	public void setNodeLabel(String id, String label) throws Exception{
+		GraphJsNode node = nodeMap.get(id);
+		if(node == null){
+			throw new Exception("Node not found with id = " + id);
+		}
+		node.setLabel(getBreakedLabel(label));
+	}
+	
 	public void setNodesSize(int width, int height) {
 		getState().setNodeWidth(width);
 		getState().setNodeHeight(height);
