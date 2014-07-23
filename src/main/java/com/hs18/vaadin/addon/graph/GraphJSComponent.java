@@ -23,7 +23,6 @@ public class GraphJSComponent extends AbstractJavaScriptComponent {
 
 	private static final long serialVersionUID = 1L;
 	private GraphJsLeftClickListener leftClickListener;
-
 	Map<String, GraphJsNode> nodeMap = new HashMap<String, GraphJsNode>();
 	
 	public GraphJSComponent() {
@@ -110,6 +109,13 @@ public class GraphJSComponent extends AbstractJavaScriptComponent {
 		
 	}
 	
+	/*
+	 * returns the node with id
+	 */
+	public GraphJsNode getNode(String id){
+		return nodeMap.get(id);
+	}
+	
 	public void addParent(String id, String parentId) throws Exception{
 		GraphJsNode node = nodeMap.get(id);
 		if(node == null){
@@ -156,6 +162,17 @@ public class GraphJSComponent extends AbstractJavaScriptComponent {
 		getState().setNodeWidth(width);
 		getState().setNodeHeight(height);
 	}
+	
+	/*
+	 * returns true if node with id is added to the graph earlier
+	 * else returns false
+	 */
+	public boolean isNodePresent(String id){
+		GraphJsNode node = nodeMap.get(id);
+		if(node == null) return false;
+		return true;
+	}
+
 	
 	public interface GraphJsRefreshRpc extends ClientRpc {
 	    public void refresh();

@@ -17,6 +17,8 @@ public class GraphJsNode {
 	
 	int _x;
 	int _y;
+	int iconWidth;
+	int iconHeight;
 	
 	List<GraphJsNode> children = new ArrayList<GraphJsNode>();
 	String parentId;
@@ -92,6 +94,8 @@ public class GraphJsNode {
 		this.icon = icon;
 		this.type = type;
 		this.parentId = parentId;
+		this.iconWidth = 16;
+		this.iconHeight = 16;
 	}
 	
 	public void addChild(GraphJsNode node){
@@ -111,4 +115,21 @@ public class GraphJsNode {
 	public void setProperties(Map<String, String> properties) {
 		this.properties = properties;
 	}
+
+	public int getIconWidth() {
+		return iconWidth;
+	}
+
+	public void setIconWidth(int iconWidth) {
+		this.iconWidth = iconWidth;
+	}
+
+	public int getIconHeight() {
+		return iconHeight;
+	}
+
+	public void setIconHeight(int iconHeight) {
+		this.iconHeight = iconHeight;
+	}
+	
 }

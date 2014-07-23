@@ -145,10 +145,10 @@ function drawNode(paper, node, startPosX, startPosY, availableWidth, arrowPathHe
 		}
 	}
 	
-/*	if (node.getIcon() != null || node.getIcon() !== undefined) {
-		var icon_img = paper.image(node.getIcon(), startPosX - nodeElWidth/2 + 10,  startPosY + 5, 16, 16)
+	if (node.icon != null && node.icon !== undefined) {
+		var icon_img = paper.image(node.icon, startPosX - nodeElWidth/2 + 10,  startPosY + 5, node.iconWidth, node.iconHeight);
 	}
-*/
+
 	addOnClick(node,rect,t);
 	addRightClick(node,rect,t);
 	
