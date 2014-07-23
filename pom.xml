@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.hs18.vaadin.addon</groupId>
   <artifactId>graph</artifactId>
-  <version>0.0.7-SNAPSHOT</version>
+  <version>0.0.7</version>
   <name>Graph</name>
   <description>Graph</description>
 	<properties>
